@@ -21,14 +21,15 @@ class PlaceJSONEncoder(DjangoJSONEncoder):
 
 def search_place(request):
 
-    print(request.GET)
-    place = request.GET.get('query')
+    place = request.GET.get('query')   # This is sent with the AJAX query.
+
     if place:
         # DB query
         places = list(Place.objects.filter(name__icontains=place).order_by('name'))
     else:
         # No search query, return everything. Adapt to suit the behavior of your app.
-        places = list(Place.objects.all())
+        # Everything could be a lot! You would probably want to limit to (e.g.) the first 30 results
+        places = list(Place.objects.all().order_by('name'))
 
     # Use PlaceJSONEncoder to convert list of Places to JSON. Return JSON object.
     return JsonResponse(places, encoder=PlaceJSONEncoder, safe=False)

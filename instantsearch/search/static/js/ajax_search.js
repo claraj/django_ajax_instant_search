@@ -1,5 +1,19 @@
 $(function(){
 
+  // Optional: load everything when page loads
+  $.get(
+    'search'
+    // No parameters: /search will return everything.
+    // This is probably not desirable behavior since everything can be a LOT of data!
+  ).done(function(data){
+    console.log('done')
+    update_search_results(data)
+  }).fail(function(){
+    console.log('todo handle errors here')
+  });
+
+
+  // Searching - respond to user keyup events.
   $('#search_input').keyup(function(){
 
     var text = $(this).val();
