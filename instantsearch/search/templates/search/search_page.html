@@ -1,0 +1,15 @@
+{% staticfiles %}
+
+
+<P>Enter a name to search for </P>
+
+<!-- Attach JavaScript to this text box. Listen for keyup events. Send query to server after every keyup.  -->
+<input id='search_input' type=text></input>
+
+<!-- Display results here  -->
+<div id='search_results'>
+</div>
+
+<!-- JQuery via Google's CDN and our ajax_search.js -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/ajax_search.js"></script>
